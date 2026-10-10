@@ -1,0 +1,7 @@
+import { useState } from 'react';
+import { Pill, PackageCheck } from 'lucide-react';
+import MedicineList from './MedicineList.jsx';
+import Prescription from './Prescription.jsx';
+import { PHARMACY_SUMMARY } from '../../utils/constants.js';
+const summary=PHARMACY_SUMMARY;
+export default function Pharmacy(){const [filter,setFilter]=useState('All');return <main className="container module-page"><div className="module-title"><div><div className="eyebrow">Care operations / Medication</div><h1>Pharmacy</h1><p>Medication availability and prescription details at a glance.</p></div><span className="pill blue"><PackageCheck size={12}/> Sample inventory</span></div><div className="metric-grid"><div className="metric"><small>Medicine items</small><strong>{summary.medicineItems}</strong><em>Sample inventory</em></div><div className="metric"><small>Low stock alerts</small><strong>{summary.lowStockAlerts}</strong><em>Review reorder list</em></div><div className="metric"><small>Ready prescriptions</small><strong>{summary.readyPrescriptions}</strong><em>Awaiting collection</em></div></div><div className="module-layout"><section className="panel"><div className="panel-title"><h2>Medicine inventory</h2><select aria-label="Filter stock status" value={filter} onChange={e=>setFilter(e.target.value)} style={{border:'1px solid #dce8e6',padding:'8px',borderRadius:7,color:'#49646c',fontSize:12}}><option>All</option><option>In stock</option><option>Low stock</option></select></div><MedicineList filter={filter}/></section><aside><Prescription/></aside></div></main>}

@@ -1,0 +1,4 @@
+import { Download, FileText } from 'lucide-react';
+import { getReports } from '../../services/reportingService.js';
+const reports=getReports();
+export default function ReportsList(){return <div className="table-wrap"><table className="data-table"><thead><tr><th>Report</th><th>Generated</th><th>Category</th><th>Format</th><th></th></tr></thead><tbody>{reports.map(r=><tr key={r[0]}><td><FileText size={14} style={{verticalAlign:'middle',marginRight:8,color:'#278f86'}}/><strong>{r[0]}</strong></td><td>{r[1]}</td><td>{r[2]}</td><td><span className="pill blue">PDF · demo</span></td><td><button type="button" aria-label={`Download ${r[0]} sample`} onClick={()=>window.alert('Demo only — sample report download is not available.')} style={{border:0,background:'transparent',color:'#247f7a'}}><Download size={16}/></button></td></tr>)}</tbody></table></div>}

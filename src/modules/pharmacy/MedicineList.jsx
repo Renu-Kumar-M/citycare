@@ -1,0 +1,3 @@
+import { PHARMACY_INVENTORY } from '../../utils/constants.js';
+const inventory=PHARMACY_INVENTORY;
+export default function MedicineList({filter}){const rows=filter==='All'?inventory:inventory.filter(r=>r[3]===filter);return <div className="table-wrap"><table className="data-table"><thead><tr><th>Item</th><th>Medicine</th><th>Form</th><th>Availability</th><th>Qty</th></tr></thead><tbody>{rows.map((r,i)=><tr key={r[0]}><td>{r[0]}</td><td><strong>{r[1]}</strong></td><td>{r[2]||'Inhaler'}</td><td><span className={`pill ${r[3]==='Low stock'?'warn':''}`}>{r[3]}</span></td><td>{r[4]}</td></tr>)}</tbody></table>{rows.length===0&&<div className="empty-state">No items match this view.</div>}</div>}
